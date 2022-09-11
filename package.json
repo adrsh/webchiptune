@@ -2,7 +2,7 @@
   "name": "sound-module",
   "version": "0.0.1",
   "description": "Module for making sounds in browser",
-  "main": "src/index.js",
+  "main": "src/app.js",
   "type": "module",
   "scripts": {
     "dev": "vite",
