@@ -1,0 +1,29 @@
+{
+  "name": "sound-module",
+  "version": "0.0.1",
+  "description": "Module for making sounds in browser",
+  "main": "src/index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "serve": "vite preview",
+    "lint": "npx eslint ./src || exit 0",
+    "lint:fix": "npx eslint ./src --fix || exit 0",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adrsh/module.git"
+  },
+  "author": "Adrian Shosholli <as227cw@student.lnu.se>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/adrsh/module/issues"
+  },
+  "homepage": "https://github.com/adrsh/module#readme",
+  "devDependencies": {
+    "@lnu/eslint-config": "^1.1.6",
+    "vite": "^3.1.0"
+  }
+}
