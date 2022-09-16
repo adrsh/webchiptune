@@ -1,7 +1,7 @@
 {
-  "name": "sound-module",
-  "version": "0.0.1",
-  "description": "Module for making sounds in browser",
+  "name": "chiptune",
+  "version": "1.0.0",
+  "description": "Module for making chiptune sounds in a browser.",
   "main": "src/app.js",
   "type": "module",
   "scripts": {
@@ -25,5 +25,8 @@
   "devDependencies": {
     "@lnu/eslint-config": "^1.1.6",
     "vite": "^3.1.0"
+  },
+  "eslintConfig": {
+    "extends": "@lnu"
   }
 }

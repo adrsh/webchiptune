@@ -1,11 +1,9 @@
-import * as Sound from './index.js'
-
-const soundMaker = new Sound.SoundMaker()
+import * as Chiptune from './index.js'
 
 const startButton = document.querySelector('#start-button')
-startButton.addEventListener('click', event => soundMaker.start())
+startButton.addEventListener('click', event => Chiptune.start())
 
-const square = new Sound.Square()
+const square = new Chiptune.Sawtooth()
 
 const playButton = document.querySelector('#play-button')
 playButton.addEventListener('click', event => square.play())

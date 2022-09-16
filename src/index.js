@@ -1,27 +1,43 @@
 const context = new AudioContext()
 
-export class SoundMaker {
-  constructor () {
-    this.context = context
-    this.gain = new GainNode(context, {
-      gain: 0.5
-    })
-  }
-  start () {
-    if (!this.context) {
-      this.context = new AudioContext()
-    }
-  }
+/**
+ * Starts Audio Context.
+ */
+export function start () {
+  context.resume()
 }
 
+/**
+ *
+ */
 export class Synth {
   oscillator
   gain
-  play () {
+  /**
+   *
+   */
+  constructor () {
+    this.oscillator = new OscillatorNode(context)
+    this.gain = new GainNode(context, {
+      gain: 0
+    })
+    this.oscillator.connect(this.gain).connect(context.destination)
+  }
+
+  /**
+   *
+   */
+  play (time = context.currentTime) {
     if (this.oscillator) {
-      this.oscillator.start()
+      this.gain.gain.cancelScheduledValues(time)
+      this.gain.gain.setValueAtTime(0.1, time)
+      this.gain.gain.linearRampToValueAtTime(0, time + 1)
     }
   }
+
+  /**
+   *
+   */
   stop () {
     if (this.oscillator) {
       this.oscillator.stop()
@@ -29,15 +45,30 @@ export class Synth {
   }
 }
 
+/**
+ *
+ */
 export class Square extends Synth {
+  /**
+   *
+   */
   constructor () {
     super()
-    this.oscillator = new OscillatorNode(context, {
-      type: 'square',
-    })
-    this.gain = new GainNode(context, {
-      gain: 0.1
-    })
-    this.oscillator.connect(this.gain).connect(context.destination)
+    this.oscillator.type = 'square'
+    this.oscillator.start()
+  }
+}
+
+/**
+ *
+ */
+export class Sawtooth extends Synth {
+  /**
+   *
+   */
+  constructor () {
+    super()
+    this.oscillator.type = 'sawtooth'
+    this.oscillator.start()
   }
 }
