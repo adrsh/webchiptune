@@ -8,67 +8,49 @@ export function start () {
 }
 
 /**
+ * Returns the current time.
+ *
+ * @returns {number} Current time
+ */
+export function now () {
+  return context.currentTime + 0.05
+}
+
+/**
  *
  */
 export class Synth {
   oscillator
   gain
   /**
+   * Constructor for Synth.
    *
+   * @param {String} type Synth type.
    */
-  constructor () {
-    this.oscillator = new OscillatorNode(context)
-    this.gain = new GainNode(context, {
-      gain: 0
+  constructor (type) {
+    this.oscillator = new OscillatorNode(context, {
+      type: type
     })
+    this.gain = new GainNode(context, { gain: 0 })
     this.oscillator.connect(this.gain).connect(context.destination)
+    this.oscillator.start()
   }
 
   /**
+   * Plays a note at a specified time.
    *
+   * @param {Number} time Time to play the note.
    */
-  play (time = context.currentTime) {
-    if (this.oscillator) {
-      this.gain.gain.cancelScheduledValues(time)
-      this.gain.gain.setValueAtTime(0.1, time)
-      this.gain.gain.linearRampToValueAtTime(0, time + 1)
-    }
+  play (time = now()) {
+    this.gain.gain.cancelScheduledValues(time)
+    this.gain.gain.setValueAtTime(0.1, time)
+    this.gain.gain.linearRampToValueAtTime(0, time + 1)
   }
 
   /**
-   *
+   * Stops the oscillator.
    */
   stop () {
-    if (this.oscillator) {
-      this.oscillator.stop()
-    }
-  }
-}
-
-/**
- *
- */
-export class Square extends Synth {
-  /**
-   *
-   */
-  constructor () {
-    super()
-    this.oscillator.type = 'square'
-    this.oscillator.start()
-  }
-}
-
-/**
- *
- */
-export class Sawtooth extends Synth {
-  /**
-   *
-   */
-  constructor () {
-    super()
-    this.oscillator.type = 'sawtooth'
-    this.oscillator.start()
+    this.oscillator.stop()
   }
 }
