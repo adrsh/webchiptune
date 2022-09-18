@@ -1,7 +1,7 @@
 const context = new AudioContext()
 
 /**
- * Starts Audio Context.
+ * Starts or resumes the Audio Context.
  */
 export function start () {
   context.resume()
@@ -43,9 +43,16 @@ export class Instrument {
    * @param {Number} time Time to play the note.
    */
   play (note, time = now()) {
+    // Changes frequency of the oscillator.
     this.oscillator.frequency.setValueAtTime(noteToFrequency(note), time)
+
+    // Cancels any scheduled and ongoing changes to the gain value.
     this.gainNode.gain.cancelScheduledValues(time)
+
+    // Sets the gain to 0.1 at the specified time.
     this.gainNode.gain.setValueAtTime(0.1, time)
+
+    // Ramps the gain to zero linearly one second after the time-
     this.gainNode.gain.linearRampToValueAtTime(0, time + 1)
   }
 

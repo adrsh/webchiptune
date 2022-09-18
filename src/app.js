@@ -1,12 +1,6 @@
-import * as Chiptune from './index.js'
+import '../src/components/pt-keyboard'
 
-const startButton = document.querySelector('#start-button')
-startButton.addEventListener('click', event => Chiptune.start())
+const body = document.querySelector('body')
 
-const square = new Chiptune.Instrument('square')
-
-const playButton = document.querySelector('#play-button')
-playButton.addEventListener('click', event => square.play(63))
-
-const stopButton = document.querySelector('#stop-button')
-stopButton.addEventListener('click', event => square.stop())
+const keyboard = document.createElement('pt-keyboard')
+body.appendChild(keyboard)
