@@ -18,7 +18,7 @@ template.innerHTML = `
     }
     .octave {
       position: relative;
-      height: 12rem;
+      height: 8rem;
     }
     .white-notes {
       display: flex;
@@ -59,14 +59,6 @@ template.innerHTML = `
     label {
       font-family: sans-serif;
       font-size: 0.7rem;
-    }
-    #solo {
-      position: absolute;
-      width: 100%;
-      height: 2rem;
-      display: flex;
-      justify-content: center;
-      align-items: center;
     }
   </style>
   <div id="keyboard">
@@ -240,7 +232,8 @@ customElements.define('pt-keyboard',
      * Called after the element is inserted to the DOM.
      */
     connectedCallback () {
-      this.addEventListener('click', Chiptune.start(), { once: true })
+      // this.keyboard = this.shadowRoot.querySelector('#keyboard')
+      this.addEventListener('click', event => Chiptune.start(), { once: true })
 
       this.addEventListener('note-play', event => this.#playNote(event.detail.note))
       this.addEventListener('note-stop', event => this.#stopNote(event.detail.note))

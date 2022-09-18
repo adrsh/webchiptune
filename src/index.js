@@ -8,12 +8,12 @@ export function start () {
 }
 
 /**
- * Returns the current time including a short look ahead time.
+ * Returns the current time of the Audio Context.
  *
  * @returns {number} Current time
  */
 export function now () {
-  return context.currentTime + 0.05
+  return context.currentTime
 }
 
 /**

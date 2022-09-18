@@ -10,7 +10,7 @@ template.innerHTML = `
   <style>
     :host {
       display: flex;
-      width: 2.5rem;
+      width: 1.6rem;
       background-color: #FFFFFF;
       outline: 1px solid black;
       align-items: flex-end;
