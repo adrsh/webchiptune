@@ -26,7 +26,7 @@ template.innerHTML = `
       padding: 0.5rem;
     }
   </style>
-  <div id="note">C4</div>
+  <div id="note"></div>
 `
 
 customElements.define('pt-keyboard-note',
@@ -106,7 +106,7 @@ customElements.define('pt-keyboard-note',
      */
     attributeChangedCallback (name, oldValue, newValue) {
       if (name === 'note') {
-        this.note = newValue
+        this.note = parseInt(newValue)
       }
     }
 

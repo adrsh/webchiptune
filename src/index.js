@@ -82,7 +82,10 @@ function noteToFrequency (note) {
  * @returns {String} Notation of MIDI note.
  */
 export function noteToNotation (note) {
-  const noteIndex = (note - 21) % 12
+  if (note < 12 || note > 119) {
+    throw new Error('Note needs to be between 21 and 108.')
+  }
+  const noteIndex = (note - 9) % 12
   let toneName
   const octave = Math.floor((note - 12) / 12)
   switch (noteIndex) {

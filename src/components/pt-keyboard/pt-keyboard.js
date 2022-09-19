@@ -254,7 +254,7 @@ customElements.define('pt-keyboard',
      * @param {string} note Note to be played, ex. 'C4'.
      */
     #playNote (note) {
-      this.instrument.play(note, Chiptune.now())
+      this.instrument.play(note)
       const target = this.shadowRoot.querySelector(`pt-keyboard-note[note="${note}"]`)
       target.classList.add('playing')
     }
