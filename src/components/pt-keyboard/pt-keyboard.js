@@ -225,7 +225,7 @@ customElements.define('pt-keyboard',
       this.attachShadow({ mode: 'open' })
       this.shadowRoot.appendChild(template.content.cloneNode(true))
 
-      this.instrument = new Chiptune.Instrument('square')
+      this.instrument = new Chiptune.Instrument('triangle')
     }
 
     /**

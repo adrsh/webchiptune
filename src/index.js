@@ -74,3 +74,56 @@ function noteToFrequency (note) {
   // Could be replaced with a look-up-table
   return 440 * 2 ** ((note - 69) / 12)
 }
+
+/**
+ * Convert MIDI note to notation.
+ *
+ * @param {Number} note MIDI Note to convert to notation
+ * @returns {String} Notation of MIDI note.
+ */
+export function noteToNotation (note) {
+  const noteIndex = (note - 21) % 12
+  let toneName
+  const octave = Math.floor((note - 12) / 12)
+  switch (noteIndex) {
+    case 0:
+      toneName = 'A'
+      break
+    case 1:
+      toneName = 'A#'
+      break
+    case 2:
+      toneName = 'B'
+      break
+    case 3:
+      toneName = 'C'
+      break
+    case 4:
+      toneName = 'C#'
+      break
+    case 5:
+      toneName = 'D'
+      break
+    case 6:
+      toneName = 'D#'
+      break
+    case 7:
+      toneName = 'E'
+      break
+    case 8:
+      toneName = 'F'
+      break
+    case 9:
+      toneName = 'F#'
+      break
+    case 10:
+      toneName = 'G'
+      break
+    case 11:
+      toneName = 'G#'
+      break
+    default:
+      break
+  }
+  return toneName + octave
+}

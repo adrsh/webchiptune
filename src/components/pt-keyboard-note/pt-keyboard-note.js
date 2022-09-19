@@ -5,6 +5,8 @@
  * @version 1.0.0
  */
 
+import * as Chiptune from '../../index.js'
+
 const template = document.createElement('template')
 template.innerHTML = `
   <style>
@@ -82,8 +84,8 @@ customElements.define('pt-keyboard-note',
       this.addEventListener('pointerdown', this.onPointerDown)
       this.addEventListener('pointerenter', this.onPointerEnter)
 
-      // const noteName = this.shadowRoot.querySelector('#note')
-      // noteName.textContent = Tone.Frequency(this.note, 'midi').toNote()
+      const noteName = this.shadowRoot.querySelector('#note')
+      noteName.textContent = Chiptune.noteToNotation(this.note)
     }
 
     /**
