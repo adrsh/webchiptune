@@ -52,7 +52,7 @@ export class Instrument {
     // Sets the gain to 0.1 at the specified time.
     this.gainNode.gain.setValueAtTime(0.1, time)
 
-    // Ramps the gain to zero linearly one second after the time-
+    // Ramps the gain to zero linearly one second after the time.
     this.gainNode.gain.linearRampToValueAtTime(0, time + 1)
   }
 
@@ -67,8 +67,8 @@ export class Instrument {
 /**
  * Convert MIDI note to its corresponding frequency.
  *
- * @param {number} note MIDI note to convert to frequency.
- * @returns {number} Frequency corresponding to the note.
+ * @param {Number} note MIDI note to convert to frequency.
+ * @returns {Number} Frequency corresponding to the note.
  */
 function noteToFrequency (note) {
   // Could be replaced with a look-up-table
@@ -78,57 +78,43 @@ function noteToFrequency (note) {
 /**
  * Convert MIDI note to notation.
  *
- * @param {number} note MIDI Note to convert to notation
- * @returns {string} Notation of MIDI note.
+ * @param {Number} note MIDI Note to convert to notation
+ * @returns {String} Notation of MIDI note.
  */
 export function noteToNotation (note) {
   if (note < 12 || note > 119) {
     throw new Error('Note needs to be between 12 and 119.')
   }
   const noteIndex = (note - 9) % 12
-  let toneName
+  const noteName = noteIndexToNoteName(noteIndex)
   const octave = Math.floor((note - 12) / 12)
-  switch (noteIndex) {
-    case 0:
-      toneName = 'A'
-      break
-    case 1:
-      toneName = 'A#'
-      break
-    case 2:
-      toneName = 'B'
-      break
-    case 3:
-      toneName = 'C'
-      break
-    case 4:
-      toneName = 'C#'
-      break
-    case 5:
-      toneName = 'D'
-      break
-    case 6:
-      toneName = 'D#'
-      break
-    case 7:
-      toneName = 'E'
-      break
-    case 8:
-      toneName = 'F'
-      break
-    case 9:
-      toneName = 'F#'
-      break
-    case 10:
-      toneName = 'G'
-      break
-    case 11:
-      toneName = 'G#'
-      break
-    default:
-      break
+  return noteName + octave
+}
+
+/**
+ * Convert note index to note name.
+ *
+ * @param {Number} noteIndex Note to convert to name, ex. 0 = A, 1 = A#...
+ * @returns {String} Note name.
+ */
+function noteIndexToNoteName (noteIndex) {
+  if (noteIndex < 0 || noteIndex > 11) {
+    throw new Error('Note index needs to be between 0 and 11.')
   }
-  return toneName + octave
+  switch (noteIndex) {
+    case 0: return 'A'
+    case 1: return 'A#'
+    case 2: return 'B'
+    case 3: return 'C'
+    case 4: return 'C#'
+    case 5: return 'D'
+    case 6: return 'D#'
+    case 7: return 'E'
+    case 8: return 'F'
+    case 9: return 'F#'
+    case 10: return 'G'
+    case 11: return 'G#'
+  }
 }
 
 /**
