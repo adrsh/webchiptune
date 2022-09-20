@@ -25,11 +25,11 @@ export class Instrument {
   /**
    * Constructor for Instrument.
    *
-   * @param {String} type Oscillator type.
+   * @param {string} type Oscillator type.
    */
   constructor (type) {
     this.oscillator = new OscillatorNode(context, {
-      type: type
+      type
     })
     this.gainNode = new GainNode(context, { gain: 0 })
     this.oscillator.connect(this.gainNode).connect(context.destination)
@@ -39,8 +39,8 @@ export class Instrument {
   /**
    * Plays a note at a specified time.
    *
-   * @param {Number} note Which note to play. EX. 48.
-   * @param {Number} time Time to play the note.
+   * @param {number} note Which note to play. EX. 48.
+   * @param {number} time Time to play the note.
    */
   play (note, time = now()) {
     // Changes frequency of the oscillator.
@@ -65,10 +65,10 @@ export class Instrument {
 }
 
 /**
- * Convert MIDI note to frequency.
+ * Convert MIDI note to its corresponding frequency.
  *
- * @param {Number} note MIDI note to convert to frequency.
- * @returns {Number} Frequency corresponding to the note.
+ * @param {number} note MIDI note to convert to frequency.
+ * @returns {number} Frequency corresponding to the note.
  */
 function noteToFrequency (note) {
   // Could be replaced with a look-up-table
@@ -78,12 +78,12 @@ function noteToFrequency (note) {
 /**
  * Convert MIDI note to notation.
  *
- * @param {Number} note MIDI Note to convert to notation
- * @returns {String} Notation of MIDI note.
+ * @param {number} note MIDI Note to convert to notation
+ * @returns {string} Notation of MIDI note.
  */
 export function noteToNotation (note) {
   if (note < 12 || note > 119) {
-    throw new Error('Note needs to be between 21 and 108.')
+    throw new Error('Note needs to be between 12 and 119.')
   }
   const noteIndex = (note - 9) % 12
   let toneName
@@ -129,4 +129,43 @@ export function noteToNotation (note) {
       break
   }
   return toneName + octave
+}
+
+/**
+ * Represent a sequence of notes.
+ */
+export class Sequence {
+  /**
+   * Constructor for Chiptune sequence.
+   *
+   * @param {Chiptune.Instrument} instrument Instrument to be played by the sequencer.
+   */
+  constructor (instrument) {
+    this.sequence = []
+    this.instrument = instrument
+  }
+
+  /**
+   * Starts playing the sequence.
+   *
+   * @param {Number} tempo Tempo for the sequence to be played.
+   */
+  play (tempo = 120) {
+    const tickLength = 1 / ((tempo * 4) / 60)
+    for (let index = 0; index < 64; index++) {
+      if (this.sequence[index]) {
+        this.instrument.play(this.sequence[index], now() + (tickLength * index))
+      }
+    }
+  }
+
+  /**
+   * Adds a note to the sequence.
+   *
+   * @param {Number} row Row of note to be played.
+   * @param {Number} note Note to be played.
+   */
+  add (row, note) {
+    this.sequence[row] = note
+  }
 }
