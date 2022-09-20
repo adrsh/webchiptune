@@ -1,0 +1,21 @@
+body {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	font-family: sans-serif;
+}
+.test {
+	display: flex;
+	width: 48rem;
+	gap: 1rem;
+	flex-direction: column;
+}
+.test-title {
+	font-size: 2rem;
+	font-family: sans-serif;
+	font-weight: bold;
+}
+pt-keyboard {
+	overflow: auto;
+}
