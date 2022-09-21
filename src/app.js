@@ -29,7 +29,7 @@ const playMultiSeqButton = document.querySelector('#play-multiple-sequences')
 
 playMultiSeqButton.addEventListener('click', event => playSequences())
 
-const square = new Chiptune.Instrument('sawtooth')
+const square = new Chiptune.Instrument('square')
 
 const squareSequence = new Chiptune.Sequence(square)
 
@@ -51,3 +51,6 @@ function playSequences () {
   sequence.play(tempo, now)
   squareSequence.play(tempo, now)
 }
+
+console.log(Chiptune.notationToNoteNumber('C4'))
+console.log(Chiptune.notationToNoteNumber('D#2'))

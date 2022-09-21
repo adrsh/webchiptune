@@ -84,8 +84,10 @@ customElements.define('pt-keyboard-note',
       this.addEventListener('pointerdown', this.onPointerDown)
       this.addEventListener('pointerenter', this.onPointerEnter)
 
-      const noteName = this.shadowRoot.querySelector('#note')
-      noteName.textContent = Chiptune.noteToNotation(this.note)
+      if (this.note) {
+        const noteName = this.shadowRoot.querySelector('#note')
+        noteName.textContent = Chiptune.noteToNotation(this.note)
+      }
     }
 
     /**

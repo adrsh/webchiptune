@@ -94,7 +94,7 @@ export function noteToNotation (note) {
   if (note < 12 || note > 119) {
     throw new Error('Note needs to be between 12 and 119.')
   }
-  const noteIndex = (note - 9) % 12
+  const noteIndex = note % 12
   const noteName = noteIndexToNoteName(noteIndex)
   const octave = Math.floor((note - 12) / 12)
   return noteName + octave
@@ -111,18 +111,72 @@ function noteIndexToNoteName (noteIndex) {
     throw new Error('Note index needs to be between 0 and 11.')
   }
   switch (noteIndex) {
-    case 0: return 'A'
-    case 1: return 'A#'
-    case 2: return 'B'
-    case 3: return 'C'
-    case 4: return 'C#'
-    case 5: return 'D'
-    case 6: return 'D#'
-    case 7: return 'E'
-    case 8: return 'F'
-    case 9: return 'F#'
-    case 10: return 'G'
-    case 11: return 'G#'
+    case 0: return 'C'
+    case 1: return 'C#'
+    case 2: return 'D'
+    case 3: return 'D#'
+    case 4: return 'E'
+    case 5: return 'F'
+    case 6: return 'F#'
+    case 7: return 'G'
+    case 8: return 'G#'
+    case 9: return 'A'
+    case 10: return 'A#'
+    case 11: return 'B'
+    default: console.log(noteIndex)
+  }
+}
+
+/**
+ * Convert note notation to note number.
+ *
+ * @param {String} notation Note notation to convert to note number. Ex. C4 = 60.
+ * @returns {Number} Note number that the note notation corresponds to.
+ */
+export function notationToNoteNumber (notation) {
+  if (notation.length > 3 || notation.length < 2) {
+    throw new Error('Note notation has an invalid format.')
+  }
+
+  // Extract octave
+  const octave = parseInt(notation.charAt(notation.length - 1))
+  if (isNaN(octave) || octave < 0 || octave > 8) {
+    throw new Error('Octave is out of range.')
+  }
+
+  // Extract note name
+  let note
+  if (notation.length === 2) {
+    note = notation.slice(0, 1)
+  } else if (notation.length === 3) {
+    note = notation.slice(0, 2)
+  }
+
+  // Octave needs to add one because C0 is octave 0 but note number 12.
+  return (octave + 1) * 12 + noteNameToNoteIndex(note)
+}
+
+/**
+ * Convert name of note to index.
+ *
+ * @param {String} noteName Name of note to convert to index. C = 0, C# = 1...
+ * @returns {Number}
+ */
+function noteNameToNoteIndex (noteName) {
+  switch (noteName) {
+    case 'C': return 0
+    case 'C#': return 1
+    case 'D': return 2
+    case 'D#': return 3
+    case 'E': return 4
+    case 'F': return 5
+    case 'F#': return 6
+    case 'G': return 7
+    case 'G#': return 8
+    case 'A': return 9
+    case 'A#': return 10
+    case 'B': return 11
+    default: throw new Error('Invalid note name.')
   }
 }
 
