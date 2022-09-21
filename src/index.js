@@ -43,17 +43,26 @@ export class Instrument {
    * @param {number} time Time to play the note.
    */
   play (note, time = now()) {
-    // Changes frequency of the oscillator.
-    this.oscillator.frequency.setValueAtTime(noteToFrequency(note), time)
-
     // Cancels any scheduled and ongoing changes to the gain value.
     this.gainNode.gain.cancelScheduledValues(time)
+
+    // Changes frequency of the oscillator.
+    this.oscillator.frequency.setValueAtTime(noteToFrequency(note), time)
 
     // Sets the gain to 0.1 at the specified time.
     this.gainNode.gain.setValueAtTime(0.1, time)
 
     // Ramps the gain to zero linearly one second after the time.
     this.gainNode.gain.linearRampToValueAtTime(0, time + 1)
+  }
+
+  /**
+   * Release the note.
+   *
+   * @param {Number} time Time to release the note.
+   */
+  release (time = now()) {
+    // this.gainNode.gain.setValueAtTime(0, time)
   }
 
   /**
@@ -153,5 +162,14 @@ export class Sequence {
    */
   add (row, note) {
     this.sequence[row] = note
+  }
+
+  /**
+   * Delete a note from a row.
+   *
+   * @param {Number} row Row to delete note from.
+   */
+  delete (row) {
+    delete this.sequence[row]
   }
 }

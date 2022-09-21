@@ -19,5 +19,6 @@ sequence.add(4, 67)
  * Plays a sequence.
  */
 function playSequence () {
+  Chiptune.start()
   sequence.play(120)
 }

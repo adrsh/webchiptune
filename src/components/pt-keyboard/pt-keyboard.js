@@ -265,6 +265,7 @@ customElements.define('pt-keyboard',
      * @param {string} note Note to be released, ex. 'C4'.
      */
     #stopNote (note) {
+      this.instrument.release()
       const target = this.shadowRoot.querySelector(`pt-keyboard-note[note="${note}"]`)
       target.classList.remove('playing')
     }
