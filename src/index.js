@@ -13,7 +13,7 @@ export function start () {
  * @returns {number} Current time
  */
 export function now () {
-  return context.currentTime
+  return context.currentTime + 0.02
 }
 
 /**
@@ -144,12 +144,13 @@ export class Sequence {
    * Starts playing the sequence.
    *
    * @param {Number} tempo Tempo for the sequence to be played.
+   * @param {Number} time Time for when to play the sequence.
    */
-  play (tempo = 120) {
+  play (tempo = 120, time = now()) {
     const tickLength = 1 / ((tempo * 4) / 60)
     for (let index = 0; index < 64; index++) {
       if (this.sequence[index]) {
-        this.instrument.play(this.sequence[index], now() + (tickLength * index))
+        this.instrument.play(this.sequence[index], time + (tickLength * index))
       }
     }
   }
@@ -161,6 +162,9 @@ export class Sequence {
    * @param {Number} note Note to be played.
    */
   add (row, note) {
+    if (row < 0 || row > 63) {
+      throw new Error('Row is out of range.')
+    }
     this.sequence[row] = note
   }
 
