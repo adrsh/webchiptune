@@ -1,6 +1,6 @@
 # Web Audio Chiptune
 
-#### Make chiptune music using the Web Audio API
+Inspired by [music trackers](https://en.wikipedia.org/wiki/Music_tracker) to create chiptune inspired music using the Web Audio API.
 
 ## Installation
 
@@ -13,6 +13,9 @@ import * as Chiptune from 'webchiptune'
 ```
 
 ## Usage
+
+It is necessary to to start/resume the Audio Context in the browser in order to create any sounds.
+This should be ran when a user makes an input on the web page.
 
 ```javascript
 Chiptune.start()
