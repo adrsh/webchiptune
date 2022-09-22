@@ -43,7 +43,7 @@ export class Instrument {
    * @param {number} time Time to play the note.
    */
   play (note, time = now()) {
-    if (note < 12 || note > 107) {
+    if (note < 12 || note > 120) {
       throw new Error('Note is out of range.')
     }
     // Cancels any scheduled and ongoing changes to the gain value.
@@ -76,6 +76,7 @@ export class Instrument {
   stop (time = now()) {
     this.gainNode.gain.cancelScheduledValues(time)
     this.oscillator.frequency.cancelScheduledValues(time)
+    this.gainNode.gain.linearRampToValueAtTime(0, time + 0.02)
   }
 }
 
@@ -97,7 +98,7 @@ function noteToFrequency (note) {
  * @returns {String} Notation of MIDI note.
  */
 export function noteToNotation (note) {
-  if (note < 12 || note > 119) {
+  if (note < 12 || note > 120) {
     throw new Error('Note needs to be between 12 and 119.')
   }
   const noteIndex = note % 12
@@ -214,6 +215,15 @@ export class Sequence {
         this.instrument.play(this.sequence[index], time + (tickLength * index))
       }
     }
+  }
+
+  /**
+   * Stop the sequence from playing.
+   *
+   * @param {Number} time Time of when to stop the sequence from playing.
+   */
+  stop (time = now()) {
+    this.instrument.stop()
   }
 
   /**

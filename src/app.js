@@ -33,16 +33,16 @@ const square = new Chiptune.Instrument('square')
 
 const squareSequence = new Chiptune.Sequence(square)
 
-squareSequence.add(0, 60)
-squareSequence.add(1, 62)
-squareSequence.add(2, 64)
-squareSequence.add(3, 65)
-squareSequence.add(4, 67)
+squareSequence.add(5, 60)
+squareSequence.add(6, 62)
+squareSequence.add(7, 64)
+squareSequence.add(8, 65)
+squareSequence.add(9, 67)
 squareSequence.delete(2)
-squareSequence.add(2, 64)
+squareSequence.add(7, 64)
 
 /**
- * Plays to sequences.
+ * Plays two sequences.
  */
 function playSequences () {
   Chiptune.start()
@@ -51,6 +51,8 @@ function playSequences () {
   sequence.play(tempo, now)
   squareSequence.play(tempo, now)
 }
+
+// Testing a melody.
 
 const melodySequence = new Chiptune.Sequence(new Chiptune.Instrument('square'))
 const bassSequence = new Chiptune.Sequence(new Chiptune.Instrument('triangle'))
@@ -104,8 +106,11 @@ bassSequence.add(62, Chiptune.notationToNoteNumber('G2'))
 const playMelodyButton = document.querySelector('#play-melody')
 playMelodyButton.addEventListener('click', event => playMelody())
 
+const stopMelodyButton = document.querySelector('#stop-melody')
+stopMelodyButton.addEventListener('click', event => stopMelody())
+
 /**
- * Plays to sequences.
+ * Plays the melody.
  */
 function playMelody () {
   Chiptune.start()
@@ -113,4 +118,12 @@ function playMelody () {
   const tempo = 120
   melodySequence.play(tempo, now)
   bassSequence.play(tempo, now)
+}
+
+/**
+ * Stops the melody.
+ */
+function stopMelody () {
+  melodySequence.stop()
+  bassSequence.stop()
 }
