@@ -39,12 +39,15 @@ export class Instrument {
   /**
    * Plays a note at a specified time.
    *
-   * @param {number} note Which note to play. EX. 48.
+   * @param {number} note Which note to play. Ex. 48.
    * @param {number} time Time to play the note.
    */
   play (note, time = now()) {
+    if (note < 12 || note > 107) {
+      throw new Error('Note is out of range.')
+    }
     // Cancels any scheduled and ongoing changes to the gain value.
-    this.gainNode.gain.cancelScheduledValues(time)
+    this.gainNode.gain.cancelAndHoldAtTime(time)
 
     // Changes frequency of the oscillator.
     this.oscillator.frequency.setValueAtTime(noteToFrequency(note), time)
@@ -67,9 +70,12 @@ export class Instrument {
 
   /**
    * Stops the oscillator.
+   *
+   * @param {Number} time When to stop.
    */
-  stop () {
-    this.oscillator.stop()
+  stop (time = now()) {
+    this.gainNode.gain.cancelScheduledValues(time)
+    this.oscillator.frequency.cancelScheduledValues(time)
   }
 }
 
@@ -201,6 +207,7 @@ export class Sequence {
    * @param {Number} time Time for when to play the sequence.
    */
   play (tempo = 120, time = now()) {
+    this.instrument.stop()
     const tickLength = 1 / ((tempo * 4) / 60)
     for (let index = 0; index < 64; index++) {
       if (this.sequence[index]) {

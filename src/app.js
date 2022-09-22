@@ -52,5 +52,65 @@ function playSequences () {
   squareSequence.play(tempo, now)
 }
 
-console.log(Chiptune.notationToNoteNumber('C4'))
-console.log(Chiptune.notationToNoteNumber('D#2'))
+const melodySequence = new Chiptune.Sequence(new Chiptune.Instrument('square'))
+const bassSequence = new Chiptune.Sequence(new Chiptune.Instrument('triangle'))
+
+melodySequence.add(0, Chiptune.notationToNoteNumber('E4'))
+
+melodySequence.add(10, Chiptune.notationToNoteNumber('C4'))
+melodySequence.add(12, Chiptune.notationToNoteNumber('G4'))
+melodySequence.add(14, Chiptune.notationToNoteNumber('D4'))
+
+melodySequence.add(20, Chiptune.notationToNoteNumber('C4'))
+melodySequence.add(22, Chiptune.notationToNoteNumber('B3'))
+
+melodySequence.add(28, Chiptune.notationToNoteNumber('G3'))
+melodySequence.add(30, Chiptune.notationToNoteNumber('D4'))
+
+melodySequence.add(36, Chiptune.notationToNoteNumber('C4'))
+melodySequence.add(38, Chiptune.notationToNoteNumber('B3'))
+
+melodySequence.add(42, Chiptune.notationToNoteNumber('G3'))
+melodySequence.add(44, Chiptune.notationToNoteNumber('D4'))
+melodySequence.add(46, Chiptune.notationToNoteNumber('C4'))
+
+melodySequence.add(50, Chiptune.notationToNoteNumber('A3'))
+melodySequence.add(54, Chiptune.notationToNoteNumber('A3'))
+melodySequence.add(56, Chiptune.notationToNoteNumber('C4'))
+melodySequence.add(60, Chiptune.notationToNoteNumber('D4'))
+
+bassSequence.add(0, Chiptune.notationToNoteNumber('A2'))
+bassSequence.add(3, Chiptune.notationToNoteNumber('A2'))
+bassSequence.add(6, Chiptune.notationToNoteNumber('A2'))
+
+bassSequence.add(14, Chiptune.notationToNoteNumber('A2'))
+bassSequence.add(16, Chiptune.notationToNoteNumber('G2'))
+bassSequence.add(19, Chiptune.notationToNoteNumber('G2'))
+bassSequence.add(22, Chiptune.notationToNoteNumber('G2'))
+
+bassSequence.add(30, Chiptune.notationToNoteNumber('G2'))
+bassSequence.add(32, Chiptune.notationToNoteNumber('E2'))
+bassSequence.add(35, Chiptune.notationToNoteNumber('E2'))
+bassSequence.add(38, Chiptune.notationToNoteNumber('E2'))
+
+bassSequence.add(46, Chiptune.notationToNoteNumber('E2'))
+bassSequence.add(48, Chiptune.notationToNoteNumber('F2'))
+bassSequence.add(51, Chiptune.notationToNoteNumber('F2'))
+bassSequence.add(54, Chiptune.notationToNoteNumber('F2'))
+
+bassSequence.add(60, Chiptune.notationToNoteNumber('F2'))
+bassSequence.add(62, Chiptune.notationToNoteNumber('G2'))
+
+const playMelodyButton = document.querySelector('#play-melody')
+playMelodyButton.addEventListener('click', event => playMelody())
+
+/**
+ * Plays to sequences.
+ */
+function playMelody () {
+  Chiptune.start()
+  const now = Chiptune.now()
+  const tempo = 120
+  melodySequence.play(tempo, now)
+  bassSequence.play(tempo, now)
+}
