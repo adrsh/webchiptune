@@ -20,3 +20,15 @@ This should be ran when a user makes an input on the web page.
 ```javascript
 Chiptune.start()
 ```
+
+### Sequence
+
+A sequence is a sequence of notes that can be played with an instrument.
+
+```js
+const instrument = new Chiptune.Instrument('square')
+const sequence = new Chiptune.Sequence(instrument)
+
+sequence.add(0, 'C4')
+sequence.play(120)
+```
