@@ -86,7 +86,7 @@ customElements.define('pt-keyboard-note',
 
       if (this.note) {
         const noteName = this.shadowRoot.querySelector('#note')
-        noteName.textContent = Chiptune.noteToNotation(this.note)
+        noteName.textContent = this.note.getNotation()
       }
     }
 
@@ -108,7 +108,7 @@ customElements.define('pt-keyboard-note',
      */
     attributeChangedCallback (name, oldValue, newValue) {
       if (name === 'note') {
-        this.note = parseInt(newValue)
+        this.note = new Chiptune.Note(parseInt(newValue))
       }
     }
 

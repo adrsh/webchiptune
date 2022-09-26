@@ -249,13 +249,13 @@ customElements.define('pt-keyboard',
     }
 
     /**
-     * Plays a note using Tone.
+     * Plays a note using Chiptune.
      *
-     * @param {string} note Note to be played, ex. 'C4'.
+     * @param {Chiptune.Note} note Note to be played, ex. 'C4'.
      */
     #playNote (note) {
       this.instrument.play(note)
-      const target = this.shadowRoot.querySelector(`pt-keyboard-note[note="${note}"]`)
+      const target = this.shadowRoot.querySelector(`pt-keyboard-note[note="${note.getNumber()}"]`)
       target.classList.add('playing')
     }
 
@@ -266,7 +266,7 @@ customElements.define('pt-keyboard',
      */
     #stopNote (note) {
       this.instrument.release()
-      const target = this.shadowRoot.querySelector(`pt-keyboard-note[note="${note}"]`)
+      const target = this.shadowRoot.querySelector(`pt-keyboard-note[note="${note.getNumber()}"]`)
       target.classList.remove('playing')
     }
   }
