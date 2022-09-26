@@ -62,7 +62,8 @@ export class Instrument {
    * @param {number} time Time to release the note.
    */
   release (time = now()) {
-    // this.gainNode.gain.setValueAtTime(0, time)
+    this.gainNode.gain.cancelAndHoldAtTime(time)
+    this.gainNode.gain.linearRampToValueAtTime(0, time + 0.5)
   }
 
   /**
@@ -113,7 +114,7 @@ export class Sequence {
    * @param {number} time Time of when to stop the sequence from playing.
    */
   stop (time = now()) {
-    this.instrument.stop()
+    this.instrument.stop(time)
   }
 
   /**
@@ -198,7 +199,7 @@ export class Note {
    * @returns {String}
    */
   getNotation () {
-    return this.noteToNotation(this.#number)
+    return this.noteNumberToNotation(this.#number)
   }
 
   /**
@@ -229,15 +230,15 @@ export class Note {
     }
 
     // Extract note name
-    let note
+    let noteName
     if (notation.length === 2) {
-      note = notation.slice(0, 1)
+      noteName = notation.slice(0, 1)
     } else if (notation.length === 3) {
-      note = notation.slice(0, 2)
+      noteName = notation.slice(0, 2)
     }
 
     // Octave needs to add one because C0 is octave 0 but note number 12.
-    return (octave + 1) * 12 + this.noteNameToNoteIndex(note)
+    return (octave + 1) * 12 + this.noteNameToNoteIndex(noteName)
   }
 
   /**
@@ -270,7 +271,7 @@ export class Note {
    * @param {number} note MIDI Note to convert to notation
    * @returns {string} Notation of MIDI note.
    */
-  noteToNotation (note) {
+  noteNumberToNotation (note) {
     if (note < 12 || note > 120) {
       throw new Error('Note needs to be between 12 and 119.')
     }
