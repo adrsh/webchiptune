@@ -1,8 +1,8 @@
 {
-  "name": "chiptune",
+  "name": "webchiptune",
   "version": "1.0.0",
   "description": "Module for making chiptune sounds in a browser.",
-  "main": "src/app.js",
+  "main": "src/index.js",
   "type": "module",
   "scripts": {
     "dev": "vite",

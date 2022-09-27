@@ -125,9 +125,11 @@ return noteName + octave
 ```
 Även om koden blev längre, så är den förhoppningsvis lättare att förstå. Jag brukar försöka att hålla saker minimalistiskt, men ibland kan det göra mer skada än nytta. Det har hänt att jag har skrivit one-liners som jag själv har haft svårt att förstå efter att ha läst koden vid ett senare tillfälle.
 
-Ett annat exempel var att istället för att ha långa switch-satser inuti funktionen så bröt jag ut dessa och förbättrade läsbarheten och gjorde funktionen mindre.
+Ett annat exempel var att istället för att ha långa switch-satser inuti funktionen så bröt jag ut dessa och förbättrade läsbarheten och gjorde samtidigt funktionen kortare. Men dessa switch-case-satser har jag insett att de skulle kunna ersättas med andra sätt, t.ex. med en Map.
 
-Jag är inte helt nöjd med felhanteringen i funktionerna. Det känns som att den inte hör hemma mitt i funktionerna och tar bara plats från det viktiga.
+Jag är inte helt nöjd med felhanteringen i funktionerna. Det känns som att den inte hör hemma mitt i funktionerna och tar bara plats från det viktiga. Någonstans måste ju dock det finnas något som kollar som allt står rätt till, och detta gör jag med att använda "Exceptions" som även boken är tydlig med att man bör använda.
+
+Ett tag var min kod lite huller om buller med funktioner som ligger på toppnivå och stora funktioner med svårförståeliga kodrader. Jag hade säkerligen kunnat åstadkomma mer om jag struntade i att strukturera koden på ett bättre sätt. Men i och med att denna kurs handlar om mjukvarukvalitet så valde jag istället att försöka komma på bättre sätt för slutanvändaren att använda koden, och göra det bättre att underhålla den.
 
 Det är lätt hänt att man hamnar i ett så kallat "flow" och inte bryr sig om hur koden ser ut i stunden. Det är nog en bra idé att inte vänta för länge med att omstrukturera den "slarviga" koden innan man själv får svårt att förstå den.
 
