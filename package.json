@@ -14,14 +14,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/adrsh/module.git"
+    "url": "git+https://github.com/adrsh/webchiptune.git"
   },
   "author": "Adrian Shosholli <as227cw@student.lnu.se>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/adrsh/module/issues"
+    "url": "https://github.com/adrsh/webchiptune/issues"
   },
-  "homepage": "https://github.com/adrsh/module#readme",
+  "homepage": "https://github.com/adrsh/webchiptune#readme",
   "devDependencies": {
     "@lnu/eslint-config": "^1.1.6",
     "vite": "^3.1.0"
