@@ -27,7 +27,6 @@ export class Instrument {
    * @param {number} time Time to play the note.
    */
   play (note, time = this.context.now()) {
-    console.log(time)
     // Cancels any scheduled and ongoing changes to the gain value.
     this.gainNode.gain.cancelAndHoldAtTime(time)
 
