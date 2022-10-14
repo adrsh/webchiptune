@@ -5,7 +5,7 @@
  * @version 1.0.0
  */
 
-import * as Chiptune from '../../index.js'
+import * as Chiptune from '../../module/index.js'
 
 const template = document.createElement('template')
 template.innerHTML = `
