@@ -4,6 +4,8 @@
 export class Note {
   #number
   #frequency
+  #octave
+  #name
   /**
    * Constructor for Note.
    *
@@ -12,14 +14,26 @@ export class Note {
   constructor (note) {
     try {
       if (typeof note === 'number') {
-        this.#setNumber(note)
+        this.#setNote(note)
       } else if (typeof note === 'string') {
-        this.#setNumber(this.notationToNoteNumber(note))
+        this.#setNote(this.notationToNoteNumber(note))
       }
       this.#frequency = this.noteToFrequency(this.#number)
     } catch (error) {
       console.error(error)
     }
+  }
+
+  /**
+   * Set note parameters.
+   *
+   * @param {number} noteNumber
+   */
+  #setNote (noteNumber) {
+    this.#setNumber(noteNumber)
+    this.#frequency = this.noteToFrequency(noteNumber)
+    this.#octave = Math.floor((noteNumber - 12) / 12)
+    this.#name = this.noteIndexToNoteName(noteNumber % 12)
   }
 
   /**
@@ -37,7 +51,7 @@ export class Note {
   /**
    * Get the number of the note.
    *
-   * @returns {Number} Note number.
+   * @returns {number} Note number.
    */
   getNumber () {
     return this.#number
@@ -54,10 +68,29 @@ export class Note {
 
   /**
    * Get this note as notation. Ex. C4.
-   * @returns {String}
+   *
+   * @returns {string}
    */
   getNotation () {
     return this.noteNumberToNotation(this.#number)
+  }
+
+  /**
+   * Get the octave of the note.
+   *
+   * @returns {string}
+   */
+  getOctave () {
+    return this.#octave
+  }
+
+  /**
+   * Get the octave of the note.
+   *
+   * @returns {string}
+   */
+  getName () {
+    return this.#name
   }
 
   /**
