@@ -6,7 +6,7 @@
  */
 
 import '../pt-keyboard-note/'
-import * as Chiptune from '../../module/index.js'
+import * as Chiptune from '../../../webchiptune/index.js'
 
 const template = document.createElement('template')
 template.innerHTML = `

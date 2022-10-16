@@ -1,5 +1,5 @@
 import '../src/components/pt-keyboard'
-import * as Chiptune from './module/index.js'
+import * as Chiptune from '../webchiptune/index.js'
 
 const startButton = document.querySelector('#start-button')
 
