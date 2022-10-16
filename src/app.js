@@ -127,3 +127,26 @@ function stopMelody () {
   melodySequence.stop()
   bassSequence.stop()
 }
+
+Chiptune.Pattern.add(melodySequence)
+Chiptune.Pattern.add(bassSequence)
+
+const playPatternButton = document.querySelector('#play-pattern')
+playPatternButton.addEventListener('click', event => playPattern())
+
+const stopPatternButton = document.querySelector('#stop-pattern')
+stopPatternButton.addEventListener('click', event => stopPattern())
+
+/**
+ * Plays a pattern.
+ */
+function playPattern () {
+  Chiptune.Pattern.play(120)
+}
+
+/**
+ * Stop a pattern.
+ */
+function stopPattern () {
+  Chiptune.Pattern.stop()
+}
