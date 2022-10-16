@@ -27,7 +27,7 @@ export class Note {
   /**
    * Set note parameters.
    *
-   * @param {number} noteNumber
+   * @param {number} noteNumber Note MIDI number.
    */
   #setNote (noteNumber) {
     this.#setNumber(noteNumber)
@@ -60,7 +60,7 @@ export class Note {
   /**
    * Get the frequency of the note.
    *
-   * @returns {number}
+   * @returns {number} Note frequency.
    */
   getFrequency () {
     return this.#frequency
@@ -69,7 +69,7 @@ export class Note {
   /**
    * Get this note as notation. Ex. C4.
    *
-   * @returns {string}
+   * @returns {string} Note notation.
    */
   getNotation () {
     return this.noteNumberToNotation(this.#number)
@@ -78,16 +78,16 @@ export class Note {
   /**
    * Get the octave of the note.
    *
-   * @returns {string}
+   * @returns {string} Note octave.
    */
   getOctave () {
     return this.#octave
   }
 
   /**
-   * Get the octave of the note.
+   * Get the name of the note.
    *
-   * @returns {string}
+   * @returns {string} Note name.
    */
   getName () {
     return this.#name
@@ -136,7 +136,7 @@ export class Note {
    * Convert name of note to index.
    *
    * @param {string} noteName Name of note to convert to index. C = 0, C# = 1...
-   * @returns {number}
+   * @returns {number} Note name.
    */
   noteNameToNoteIndex (noteName) {
     switch (noteName) {
