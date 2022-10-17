@@ -4,7 +4,7 @@ Inspired by [music trackers](https://en.wikipedia.org/wiki/Music_tracker) to cre
 
 ## Installation
 
-Put the src/index.js file in your project folder and rename it to webchiptune.js
+Put the webchiptune folder in your project.
 
 ```js
 import * as Chiptune from './webchiptune'
@@ -19,6 +19,30 @@ This should be ran when a user makes an input (ex. clicks) on the web page or bu
 Chiptune.start()
 ```
 
+### Note
+
+Note is used for inputting notes and getting note properties, for example getting note notation from note number, and vice versa.
+
+```js
+const note = Chiptune.Note('C4')
+const anotherNote = Chiptune.Note(60)
+
+note.getFrequency()
+note.getNotation()
+```
+
+
+### Instrument
+
+An instrument can either be ```square```, ```sine```, ```sawtooth``` and ```triangle```.
+
+```js
+const instrument = new Chiptune.Instrument('square')
+const note = Chiptune.Note('C4')
+
+instrument.play(note)
+```
+
 ### Sequence
 
 A sequence is a sequence of notes that can be played with an instrument.
@@ -30,4 +54,26 @@ const sequence = new Chiptune.Sequence(instrument)
 sequence.add(0, 'C4')
 sequence.add(1, 'D4')
 sequence.play(120)
+```
+
+### Pattern
+
+A pattern consists of multiple sequences that is played together.
+
+```js
+const square = new Chiptune.Instrument('square')
+const melody = new Chiptune.Sequence(square)
+
+const sine = new Chiptune.Instrument('sine')
+const bass = new Chiptune.Sequence(sine)
+
+melody.add(0, 'C4')
+melody.add(1, 'D4')
+bass.add(0, 60)
+bass.add(4, 61)
+
+Chiptune.Pattern.add(melody)
+Chiptune.Pattern.add(bass)
+
+Chiptune.Pattern.play(120)
 ```
