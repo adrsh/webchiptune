@@ -24,8 +24,8 @@ Chiptune.start()
 Note is used for inputting notes and getting note properties, for example getting note notation from note number, and vice versa.
 
 ```js
-const note = Chiptune.Note('C4')
-const anotherNote = Chiptune.Note(60)
+const note = new Chiptune.Note('C4')
+const anotherNote = new Chiptune.Note(60)
 ```
 
 
@@ -35,7 +35,7 @@ An instrument can either be ```square```, ```sine```, ```sawtooth``` and ```tria
 
 ```js
 const instrument = new Chiptune.Instrument('square')
-const note = Chiptune.Note('C4')
+const note = new Chiptune.Note('C4')
 
 instrument.play(note)
 ```
