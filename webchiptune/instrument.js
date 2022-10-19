@@ -30,7 +30,7 @@ export class Instrument {
     this.gainNode.gain.cancelAndHoldAtTime(time)
 
     // Changes frequency of the oscillator.
-    this.oscillator.frequency.setValueAtTime(note.getFrequency(), time)
+    this.oscillator.frequency.setValueAtTime(note.frequency, time)
 
     // Sets the gain to 0.1 at the specified time.
     this.gainNode.gain.setValueAtTime(0.1, time)

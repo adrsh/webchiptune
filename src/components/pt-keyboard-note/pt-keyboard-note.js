@@ -86,7 +86,7 @@ customElements.define('pt-keyboard-note',
 
       if (this.note) {
         const noteName = this.shadowRoot.querySelector('#note')
-        noteName.textContent = this.note.getNotation()
+        noteName.textContent = this.note.notation
       }
     }
 

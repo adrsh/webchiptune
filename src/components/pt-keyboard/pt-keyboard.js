@@ -255,7 +255,7 @@ customElements.define('pt-keyboard',
      */
     #playNote (note) {
       this.instrument.play(note)
-      const target = this.shadowRoot.querySelector(`pt-keyboard-note[note="${note.getNumber()}"]`)
+      const target = this.shadowRoot.querySelector(`pt-keyboard-note[note="${note.number}"]`)
       target.classList.add('playing')
     }
 
@@ -266,7 +266,7 @@ customElements.define('pt-keyboard',
      */
     #stopNote (note) {
       this.instrument.release()
-      const target = this.shadowRoot.querySelector(`pt-keyboard-note[note="${note.getNumber()}"]`)
+      const target = this.shadowRoot.querySelector(`pt-keyboard-note[note="${note.number}"]`)
       target.classList.remove('playing')
     }
   }
