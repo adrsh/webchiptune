@@ -26,9 +26,6 @@ Note is used for inputting notes and getting note properties, for example gettin
 ```js
 const note = Chiptune.Note('C4')
 const anotherNote = Chiptune.Note(60)
-
-note.getFrequency()
-note.getNotation()
 ```
 
 

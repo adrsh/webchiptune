@@ -93,7 +93,7 @@ export class Note {
     const noteIndex = this.#noteNameToNoteIndex(noteName)
 
     // C4 is 60, but (octave * 12) + noteIndex would return 48.
-    // Which is why we have to add 12 at the end.
+    // Which is why we have to add 12.
     return (octave * 12) + noteIndex + 12
   }
 
