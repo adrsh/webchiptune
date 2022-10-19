@@ -56,7 +56,7 @@ export class Note {
    * @returns {string} Note notation.
    */
   get notation () {
-    return this.#noteNumberToNoteNotation(this.#number)
+    return this.name + this.octave
   }
 
   /**
@@ -150,28 +150,12 @@ export class Note {
   }
 
   /**
-   * Convert MIDI note to notation.
-   *
-   * @param {number} number MIDI Note to convert to notation
-   * @returns {string} Notation of MIDI note.
-   */
-  #noteNumberToNoteNotation (number) {
-    const noteIndex = number % 12
-    const noteName = this.#noteIndexToNoteName(noteIndex)
-    const octave = Math.floor((number - 12) / 12)
-    return noteName + octave
-  }
-
-  /**
    * Convert note index to note name.
    *
-   * @param {number} noteIndex Note to convert to name, ex. 0 = A, 1 = A#...
+   * @param {number} noteIndex Note to convert to name, ex. 0 = C, 1 = C#...
    * @returns {string} Note name.
    */
   #noteIndexToNoteName (noteIndex) {
-    if (noteIndex < 0 || noteIndex > 11) {
-      throw new Error('Note index needs to be between 0 and 11.')
-    }
     switch (noteIndex) {
       case 0: return 'C'
       case 1: return 'C#'
