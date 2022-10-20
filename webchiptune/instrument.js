@@ -1,7 +1,7 @@
 import { context } from './context'
 
 /**
- *
+ * Represents an instrument in the Chiptune module.
  */
 export class Instrument {
   #oscillator
